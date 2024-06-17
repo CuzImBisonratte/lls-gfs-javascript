@@ -17,6 +17,21 @@
 
 \usepackage{tocloft}
 
+% Set up blank command
+\newcommand{\blank}[1]{
+	\underline{\hspace{\widthof{#1}*\real{1.5}}}
+}
+
+% Set up space command
+\newcommand{\spacer}[0]{
+	\vspace{0.5cm}
+	\par\noindent\rule{\textwidth}{0.1mm}
+	\vspace{0.5cm}
+}
+
+% Import packages minted and xcolor for code highlighting
+\usepackage{minted}
+
 % Fix footnotes to bottom of page
 \renewcommand{\footnoterule}{\vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt}
 
@@ -32,17 +47,6 @@
 	{\normalfont\normalsize\bfseries}}
 \makeatother
 
-
-%% Fußnoten-Liste %%
-\newlistof[chapter]{footnotes}{fnt}{}% New 'List of...' for footnotes 
-\let\oldfootnote\footnote % Save the old \footnote{...} command 
-\renewcommand\footnote[1]{% Redefine the new footnote to also add 'List of Footnote' entries. 
-	\refstepcounter{footnotes}% Add and step a reference to the footnote/counter. 
-	\oldfootnote{#1}% Make a regular footnote. 
-	\addcontentsline{fnt}{footnotes}{\protect 
-		\numberline{\thefootnotes}#1}% Add the 'List of...' entry. 
-}
-
 % Activate empty line rather than indent on new paragraph
 \usepackage[parfill]{parskip} 
 
@@ -53,6 +57,9 @@
 
 % Highlight boxes
 \usepackage{awesomebox}
+
+% Calc package - Used for \widthof{}
+\usepackage{calc}
 
 %Support for Graphics .png .jpg .pdf 
 \usepackage{graphicx}
@@ -89,8 +96,9 @@
 \usepackage{pmboxdraw}
 
 %Use coloring
-\usepackage{color}
+\usepackage{xcolor}
 \definecolor{shadecolor}{rgb}{0.7,0.8,0.9}
+\definecolor{codebg}{gray}{0.9}
 %Change captions
 \usepackage[font=footnotesize,labelfont=bf,tableposition=top]{caption}
 %Enable subfigures
@@ -101,6 +109,12 @@
 %Include indexing in TOC at the level of chapter
 \usepackage[chapter,nottoc,notbib]{tocbibind}
 
+%Table column alginment
+\usepackage{dcolumn}
+%Enable toprule midrule bottomrule
+\usepackage{booktabs}
+\usepackage{csquotes}
+
 %Enable link support in the pdf
 \usepackage[
 colorlinks=true,
@@ -108,17 +122,6 @@ urlcolor=blue,
 linkcolor=green
 ]{hyperref}
 %\usepackage{hyperref}
-
-%Table column alginment
-\usepackage{dcolumn}
-%Enable toprule midrule bottomrule
-\usepackage{booktabs}
-%Rotate objects (figures tables etc.)
-\usepackage{rotating}
-%Using BibLaTeX (replacing BibTeX)
-%Tutorial available http://sunsite.bilkent.edu.tr/pub/tex/ctan/macros/latex/contrib/csquotes/tutorial.tex
-\usepackage{csquotes}
-\usepackage{wasysym}
 %\usepackage[natbib=false,citestyle=numeric-comp,bibstyle=numeric-comp,sortcites=true,backend=biber]{biblatex}
 %\bibliography{template_advanced_thesis_references}
 %//%%%%%%%%%%%%%%%%%% LOAD PACKAGES %%%%%%%%%%%%%%%%%%%%%
@@ -133,7 +136,7 @@ linkcolor=green
 \pagestyle{fancy}
 \fancyhf{} % clear all headers and footers
 \lhead{Dynamisierung mit Javascript}
-\rhead{Lückentext \LaTeX}
+\rhead{AB 02 - Text ändern}
 \rfoot[\fancyplain{}{\leftmark}]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 % For \chapters \maketitle
@@ -183,15 +186,14 @@ linkcolor=green
 }
 %Adjust hyperlink behavior -> \usepackage{hyperref}
 \hypersetup{
-	bookmarks=true,         % show bookmarks bar?
 	unicode=true,          % non-Latin characters in Acrobat�s bookmarks
 	pdftoolbar=true,        % show Acrobat�s toolbar?
 	pdfmenubar=true,        % show Acrobat�s menu?
 	pdffitwindow=false,     % window fit to page when opened
 	pdfstartview={FitH},    % fits the width of the page to the window
-	pdftitle={Dokumentation Nöpel-Simulation},     %title
+	pdftitle={Dynamisierung mit JavaScript},     %title
 	pdfauthor={Konstantin Protzen},  % author
-	pdfsubject={Conway's Game of Life},     % subject of the document
+	pdfsubject={GFS},     % subject of the document
 	pdfkeywords={}, % list of keywords
 	pdfnewwindow=true,      % links in new window
 	colorlinks=true,        % false: boxed links; true: colored links
@@ -213,6 +215,10 @@ linkcolor=green
 %No "Hurenkinder"
 \widowpenalty = 10000 
 \displaywidowpenalty = 10000
+
+% No overfull hbox
+\tolerance 9999
+\emergencystretch 3em\relax
 
 \makeatletter 
 \renewcommand*\thesection{\@arabic\c@section.}
@@ -239,34 +245,56 @@ linkcolor=green
 \alglanguage{pseudocode}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%       T O C       %%%%%%%%%%%%%%%%%%%%%%%%%%
-%\pagenumbering{arabic}
+\pagenumbering{gobble}
 %\tableofcontents
 %\cleardoublepage
 %%%%%%%%%%%%%%%%%%%%%%%%%%   C O N T E N T   %%%%%%%%%%%%%%%%%%%%%%%%%%
-Javascript ist \underline{\hspace{5cm}} typisiert. Das bedeutet, dass Variablen nicht explizit als Zahlen, Strings oder Booleans deklariert werden müssen. Der Typ einer Variablen wird automatisch durch den \underline{\hspace{5cm}} ermittelt.
 
-Die typisierung von Variablen in Javascript ist \underline{\hspace{5cm}}. Das bedeutet, dass der Typ einer Variablen während das Programm läuft verändert werden kann.
+Wenn man in JavaScript ein spezifiertes Element ansprechen möchte, nutzt man dafür die Methode
 
-\vspace{1cm}
-\par\noindent\rule{\textwidth}{0.2pt}
-\vspace{1cm}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{javascript}
+document.getElementById("ID_AUS_DEM_HTML_ELEMENT");
+\end{minted}
 
-\begin{table}[ht]
-	\centering
-	\begin{tabular}{|c|c|}
-		\hline
-		\textbf{Aussage}                                     & \textbf{Korrekt?} \\
-		\hline
-		Es gibt For-Schleifen in JavaScript                  & $\Box$            \\
-		Javascript gibt es nur in Chrome, nicht in Firefox   & $\Box$            \\
-		If funktioniert gleich wie in C++                    & $\Box$            \\
-		Javascript benötigt ein Hauptskript (int main)       & $\Box$            \\
-		Javascript muss vor der Ausführung kompiliert werden & $\Box$            \\
-		Funktionen laufen standardmäßig synchron             & $\Box$            \\
-		\hline
-	\end{tabular}7
-	\label{tab:aussagen}
-\end{table}
+Wie der Name der Methode schon sagt, wird das Element anhand seiner ID angesprochen.
+Ein Element in HTML kann man mit einer ID versehen, indem man diesem ein \textit{id}-Attribut hinzufügt.
 
+Dann könnte ein \texttt{p}-Element mit der ID \texttt{"box"} zum Beispiel so aussehen:
+
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+<p id="box"></p>
+\end{minted}
+
+Um dieses Element nun in JavaScript anzusprechen, könnte folgender Code verwendet werden:
+
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+<body>
+	<p id="box"></p>
+	<script>
+		var box = document.getElementById("box");
+	</script>
+</body>
+\end{minted}
+
+\newpage
+
+Um den Inhalt des Elements zu ändern kann man den Parameter \texttt{innerHTML} verwenden:
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+<body>
+	<p id="box"></p>
+	<script>
+		var box = document.getElementById("box");
+		box.innerHTML = "Hallo Welt!";
+	</script>
+</body>
+\end{minted}
+
+\awesomebox{5pt}{\faTasks}{orange}{
+	\textbf{a)} Probiere doch mal in 02a.html aus, den Inhalt des Elements zu ändern.
+
+	\textbf{b)} Versuche in 02b.html auch, den Inhalt des Elements zu löschen.
+
+	\textbf{c)} Erstelle in 03b.html eine zweite Box und ändere den Inhalt beider Boxen.
+}
 
 \end{document}
