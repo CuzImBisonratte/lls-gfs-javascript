@@ -1,0 +1,293 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%% S T A R T I N G %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%  P R E A M B L E  %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,14pt]{extarticle}
+%\\%%%%%%%%%%%%%%%%%% LOAD PACKAGES %%%%%%%%%%%%%%%%%%%%%
+
+%Get support for �������
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%Paragraphen im richtigen Stil
+\renewcommand\theenumi{\arabic{enumi}}
+\renewcommand\theenumii{\alph{enumii}}
+\renewcommand\theenumiii{\arabic{enumiii}}
+\renewcommand\labelenumi{(\theenumi)}
+\renewcommand\labelenumiii{\theenumiii.}
+
+\usepackage{tocloft}
+
+% Set up blank command
+\newcommand{\blank}[1]{
+	\underline{\hspace{\widthof{#1}*\real{1.5}}}
+}
+
+% Set up space command
+\newcommand{\spacer}[0]{
+	\vspace{1cm}
+	\par\noindent\rule{\textwidth}{0.1mm}
+	\vspace{1cm}
+}
+
+% Fix footnotes to bottom of page
+\renewcommand{\footnoterule}{\vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt}
+
+% Add new line on paragraph
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+	{-3.25ex\@plus -1ex \@minus -.2ex}%
+	{1.5ex \@plus .2ex}%
+	{\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+%% Fußnoten-Liste %%
+\newlistof[chapter]{footnotes}{fnt}{}% New 'List of...' for footnotes 
+\let\oldfootnote\footnote % Save the old \footnote{...} command 
+\renewcommand\footnote[1]{% Redefine the new footnote to also add 'List of Footnote' entries. 
+	\refstepcounter{footnotes}% Add and step a reference to the footnote/counter. 
+	\oldfootnote{#1}% Make a regular footnote. 
+	\addcontentsline{fnt}{footnotes}{\protect 
+		\numberline{\thefootnotes}#1}% Add the 'List of...' entry. 
+}
+
+% Activate empty line rather than indent on new paragraph
+\usepackage[parfill]{parskip} 
+
+%Get Support for US english and german
+%\usepackage[USenglish,ngerman]{babel}
+\usepackage[german,ngerman]{babel}% <- Switch to German entirely 
+% You need also to comment all \selectlanguage{USenglish} commands out in the document part of this file
+
+% Highlight boxes
+\usepackage{awesomebox}
+
+% Calc package - Used for \widthof{}
+\usepackage{calc}
+
+%Support for Graphics .png .jpg .pdf 
+\usepackage{graphicx}
+\graphicspath{{chp1/}{appendix/fig/movie1/}{appendix/fig/movie2/}}%Set global search path
+%Adjust the page margins 
+%Need to be before subfig
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm, a4paper, portrait]{geometry}
+%For fancy headers and footers
+\usepackage{fancyhdr}
+%Use Palatino Linotype 
+\usepackage{mathpazo}
+%Extend math env. (e.g. align) [fleqn]--> algin equations left
+\usepackage{amsmath}
+%Cross out equations
+\usepackage{cancel}
+%Proper unit support
+\usepackage{units}
+%Pseudo code (write algorithms)
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{algorithmicx}
+\usepackage{algpascal}
+%Cite source code etc.
+\usepackage{listings} 
+%Enable fance referencing
+\usepackage{fancyref} 
+
+%Fancy tables
+\usepackage{tabularx} 
+\usepackage{ragged2e}
+\newcolumntype{L}{>{\RaggedRight\hspace{0pt}}X}
+
+% PMBoxDraw
+\usepackage{pmboxdraw}
+
+%Use coloring
+\usepackage{color}
+\definecolor{shadecolor}{rgb}{0.7,0.8,0.9}
+%Change captions
+\usepackage[font=footnotesize,labelfont=bf,tableposition=top]{caption}
+%Enable subfigures
+\usepackage{subfig}
+%Nomenclature: support abbreviations 
+\usepackage[]{nomencl} 
+\makenomenclature 
+%Include indexing in TOC at the level of chapter
+\usepackage[chapter,nottoc,notbib]{tocbibind}
+
+%Enable link support in the pdf
+\usepackage[
+colorlinks=true,
+urlcolor=blue,
+linkcolor=green
+]{hyperref}
+%\usepackage{hyperref}
+
+%Table column alginment
+\usepackage{dcolumn}
+%Enable toprule midrule bottomrule
+\usepackage{booktabs}
+%Rotate objects (figures tables etc.)
+\usepackage{rotating}
+%Using BibLaTeX (replacing BibTeX)
+%Tutorial available http://sunsite.bilkent.edu.tr/pub/tex/ctan/macros/latex/contrib/csquotes/tutorial.tex
+\usepackage{csquotes}
+\usepackage{wasysym}
+%\usepackage[natbib=false,citestyle=numeric-comp,bibstyle=numeric-comp,sortcites=true,backend=biber]{biblatex}
+%\bibliography{template_advanced_thesis_references}
+%//%%%%%%%%%%%%%%%%%% LOAD PACKAGES %%%%%%%%%%%%%%%%%%%%%
+%\\%%%%%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%
+
+%Disable paragraph indentation
+%\setlength{\parindent}{0mm} %not recommended
+%Adjust headings and footers --> \usepackage{fancyhdr}
+%Give the headings some space
+\setlength{\headheight}{15pt}
+%This is valid for all pages exept chapters
+\pagestyle{fancy}
+\fancyhf{} % clear all headers and footers
+\lhead{Dynamisierung mit Javascript}
+\rhead{AB 01 - Lückentext}
+\rfoot[\fancyplain{}{\leftmark}]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+% For \chapters \maketitle
+\fancypagestyle{plain}{%
+	\fancyhf{} % clear all header and footer fields
+	\rfoot[\fancyplain{}{\leftmark}]{\thepage}%
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0pt}
+}
+%Deactivate command --> small letter
+\let\MakeUppercase\relax
+%Set depth of TOC numbering
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+%Adjust source code quoting --> \usepackage{listings}
+\lstdefinelanguage{carat}{morekeywords={},
+	classoffset=0,
+	sensitive=true,
+	morecomment=[l]{!},
+	alsoletter=-,
+}
+\lstset{ %
+	language=carat,                 % choose the language of the code
+	classoffset=0,
+	keywordstyle=\color{black}\bfseries\selectfont\small,
+	basicstyle=\ttfamily\selectfont\small,
+	commentstyle=\color{black}\itshape\small,
+	numbers=none,                   % where to put the line-numbers
+	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+	stepnumber=2,                   % the step between two line-numbers. If it's 1 each line 
+	% will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{shadecolor},  % choose the background color. You must add \usepackage{color}
+	rulecolor=\color{shadecolor},
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,	                  % adds a frame around the code
+	tabsize=2,	                    % sets default tabsize to 2 spaces
+	captionpos=t,                   % sets the caption-position to bottom
+	breaklines=true,                % sets automatic line breaking
+	breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 % show the filename of files included with \lstinputlisting;
+	% also try caption instead of title
+	escapeinside={\%*}{*)},         % if you want to add a comment within your code
+	morekeywords={*,...}            % if you want to add more keywords to the set
+}
+%Adjust hyperlink behavior -> \usepackage{hyperref}
+\hypersetup{
+	bookmarks=true,         % show bookmarks bar?
+	unicode=true,          % non-Latin characters in Acrobat�s bookmarks
+	pdftoolbar=true,        % show Acrobat�s toolbar?
+	pdfmenubar=true,        % show Acrobat�s menu?
+	pdffitwindow=false,     % window fit to page when opened
+	pdfstartview={FitH},    % fits the width of the page to the window
+	pdftitle={Dokumentation Nöpel-Simulation},     %title
+	pdfauthor={Konstantin Protzen},  % author
+	pdfsubject={Conway's Game of Life},     % subject of the document
+	pdfkeywords={}, % list of keywords
+	pdfnewwindow=true,      % links in new window
+	colorlinks=true,        % false: boxed links; true: colored links
+	linkcolor=black,        % color of internal links
+	citecolor=black,        % color of links to bibliography
+	filecolor=black,        % color of file links
+	urlcolor=black          % color of external links
+}
+%Enable nice tables http://www.ctan.org/tex-archive/info/german/tabsatz/tabsatz.pdf
+%Special thanks to Axel Reichert
+\makeatletter
+\newcolumntype{d}[1]{%
+	>{\DC@{.}{.}{#1}}l<{\DC@end}%
+}
+\newcolumntype{N}{>{\footnotesize}l}
+\makeatother
+%No "Schusterjungen"
+\clubpenalty = 10000
+%No "Hurenkinder"
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+% No overfull hbox
+\tolerance 9999
+\emergencystretch 3em\relax
+
+\makeatletter 
+\renewcommand*\thesection{\@arabic\c@section.}
+\renewcommand*\thesubsection{\thesection\@arabic\c@subsection.}
+\renewcommand*\thesubsubsection{\thesubsection\@arabic\c@subsubsection.}
+\renewcommand*\theparagraph{\thesubsubsection\@arabic\c@paragraph.}
+\renewcommand*\thesubparagraph{\theparagraph\@arabic\c@subparagraph.}
+\makeatother
+\advance\cftsecnumwidth 1em\relax
+\advance\cftsubsecindent 1em\relax
+\advance\cftsubsecnumwidth 1em\relax
+%//%%%%%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%   E N D I N G   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%  P R E A M B L E  %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% S T A R T I N G %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%  D O K U M E N T  %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\alglanguage{pseudocode}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%       T O C       %%%%%%%%%%%%%%%%%%%%%%%%%%
+%\pagenumbering{arabic}
+%\tableofcontents
+%\cleardoublepage
+%%%%%%%%%%%%%%%%%%%%%%%%%%   C O N T E N T   %%%%%%%%%%%%%%%%%%%%%%%%%%
+Javascript ist \blank{dynamisch} typisiert. Das bedeutet, dass Variablen nicht explizit als Zahlen, Strings oder Booleans deklariert werden müssen. Der Typ einer Variablen wird automatisch durch den \blank{Wert / Inhalt} ermittelt.
+
+Die typisierung von Variablen in Javascript ist nicht \blank{statisch}. Das bedeutet, dass der Typ einer Variablen während das Programm läuft verändert werden kann.
+
+\spacer
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Aussage}                                         & \textbf{Korrekt?} \\
+		\hline
+		Es gibt For-Schleifen in JavaScript                      & $\Box$            \\
+		Javascript gibt es nur in Chrome, nicht in Firefox       & $\Box$            \\
+		If funktioniert gleich wie in C++                        & $\Box$            \\
+		Javascript benötigt ein Hauptskript (int main)           & $\Box$            \\
+		Javascript muss vor der Ausführung kompiliert werden     & $\Box$            \\
+		Javascript muss eingerückt werden, damit es funktioniert & $\Box$            \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\spacer
+
+Zeilen enden wie auch in C++ mit einem \blank{Semikolon}. Variablen werden mit \blank{var} und konstanten mit \blank{const} deklariert. Funktionen werden mit \blank{function} deklariert.
+
+
+
+\end{document}
