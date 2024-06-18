@@ -1,4 +1,9 @@
 *.nlo
 *.gz
 *.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.pyg
 _minted*
