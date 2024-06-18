@@ -1,3 +1,4 @@
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%% S T A R T I N G %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%  P R E A M B L E  %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -16,6 +17,18 @@
 \renewcommand\labelenumiii{\theenumiii.}
 
 \usepackage{tocloft}
+
+% Set up blank command
+\newcommand{\blank}[1]{
+	\underline{\hspace{\widthof{#1}*\real{1.5}}}
+}
+
+% Set up space command
+\newcommand{\spacer}[0]{
+	\vspace{5mm}
+	\par\noindent\rule{\textwidth}{0.1mm}
+	\vspace{5mm}
+}
 
 % Fix footnotes to bottom of page
 \renewcommand{\footnoterule}{\vfill\kern -3pt \hrule width 0.4\columnwidth \kern 2.6pt}
@@ -53,6 +66,9 @@
 
 % Highlight boxes
 \usepackage{awesomebox}
+
+% Calc package - Used for \widthof{}
+\usepackage{calc}
 
 %Support for Graphics .png .jpg .pdf 
 \usepackage{graphicx}
@@ -133,7 +149,7 @@ linkcolor=green
 \pagestyle{fancy}
 \fancyhf{} % clear all headers and footers
 \lhead{Dynamisierung mit Javascript}
-\rhead{Lückentext \LaTeX}
+\rhead{AB 01 - Lückentext}
 \rfoot[\fancyplain{}{\leftmark}]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 % For \chapters \maketitle
@@ -214,6 +230,10 @@ linkcolor=green
 \widowpenalty = 10000 
 \displaywidowpenalty = 10000
 
+% No overfull hbox
+\tolerance 9999
+\emergencystretch 3em\relax
+
 \makeatletter 
 \renewcommand*\thesection{\@arabic\c@section.}
 \renewcommand*\thesubsection{\thesection\@arabic\c@subsection.}
@@ -243,30 +263,34 @@ linkcolor=green
 %\tableofcontents
 %\cleardoublepage
 %%%%%%%%%%%%%%%%%%%%%%%%%%   C O N T E N T   %%%%%%%%%%%%%%%%%%%%%%%%%%
-Javascript ist \underline{\hspace{5cm}} typisiert. Das bedeutet, dass Variablen nicht explizit als Zahlen, Strings oder Booleans deklariert werden müssen. Der Typ einer Variablen wird automatisch durch den \underline{\hspace{5cm}} ermittelt.
+Javascript ist \blank{dynamisch} typisiert. Das bedeutet, dass Variablen nicht explizit als Zahlen, Strings oder Booleans deklariert werden müssen. Der Typ einer Variablen wird automatisch durch den \blank{Wert / Inhalt} ermittelt.
 
-Die typisierung von Variablen in Javascript ist \underline{\hspace{5cm}}. Das bedeutet, dass der Typ einer Variablen während das Programm läuft verändert werden kann.
+Die typisierung von Variablen in Javascript ist nicht \blank{statisch}. Das bedeutet, dass der Typ einer Variablen während das Programm läuft verändert werden kann.
 
-\vspace{1cm}
-\par\noindent\rule{\textwidth}{0.2pt}
-\vspace{1cm}
+\spacer
 
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline
-		\textbf{Aussage}                                     & \textbf{Korrekt?} \\
+		\textbf{Aussage}                                         & \textbf{Korrekt?} \\
 		\hline
-		Es gibt For-Schleifen in JavaScript                  & $\Box$            \\
-		Javascript gibt es nur in Chrome, nicht in Firefox   & $\Box$            \\
-		If funktioniert gleich wie in C++                    & $\Box$            \\
-		Javascript benötigt ein Hauptskript (int main)       & $\Box$            \\
-		Javascript muss vor der Ausführung kompiliert werden & $\Box$            \\
-		Funktionen laufen standardmäßig synchron             & $\Box$            \\
+		Es gibt For-Schleifen in JavaScript                      & $\Box$            \\
+		If funktioniert gleich wie in C++                        & $\Box$            \\
+		Javascript benötigt ein Hauptskript (int main)           & $\Box$            \\
+		Javascript muss eingerückt werden, damit es funktioniert & $\Box$            \\
 		\hline
 	\end{tabular}
-	\label{tab:aussagen}
 \end{table}
+
+\spacer
+
+Zeilen enden wie auch in C++ mit einem \blank{Semikolon}. Variablen werden mit \blank{var} und konstanten mit \blank{const} deklariert. Funktionen werden mit \blank{function} deklariert.
+
+\vspace{1cm}
+
+Javascript kann man in \blank{Dateien} auslagern, welche man dann in der HTML-Datei einbindet. Man kann JavaScript aber auch direkt in der HTML-Datei schreiben, indem man ein \blank{<script>}-Element an das Ende des \blank{<body>}-Elements einfügt.
+
 
 
 \end{document}
