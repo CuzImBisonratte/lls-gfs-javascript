@@ -20,6 +20,7 @@ process_tex_files() {
       for tf in ./*.tex; do
         pdflatex -shell-escape -halt-on-error "$tf" | grep '^!.*' -A200 --color=always
         cp "${tf%.tex}.pdf" "$START_PWD/dist/ABs/${parent_dir}.pdf"
+        echo "PDF generiert für $parent_dir." 
       done
       cd "$START_PWD"
     fi
@@ -32,3 +33,4 @@ done
 
 # HTML Dateien kopieren
 find ./ABs/*/*.html -exec cp {} "./dist/HTML" \;
+echo "HTML Dateien kopiert."
