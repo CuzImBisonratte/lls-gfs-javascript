@@ -7,3 +7,6 @@
 *.toc
 *.pyg
 _minted*
+
+# Distribution directory
+dist
