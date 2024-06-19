@@ -32,3 +32,4 @@ done
 
 # HTML Dateien kopieren
 find ./ABs/*/*.html -exec cp {} "./dist/HTML" \;
+find ./ABs/*/*.js -exec cp {} "./dist/HTML" \;
