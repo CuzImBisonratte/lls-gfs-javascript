@@ -283,7 +283,7 @@ Um eine Funktion aufzurufen, schreibt man einfach den Namen der Funktion gefolgt
 \end{minted}
 
 \awesomebox{5pt}{\faTasks}{orange}{
-	\textbf{a)} Erstelle eine Funktion, die den Text in einem \texttt{<p>}-Element ändert.
+	\textbf{a)} Erstelle in 04a.html eine Funktion, die den Text in einem \texttt{<p>}-Element ändert.
 }
 
 Funktionen können auch Parameter haben, die beim Aufruf der Funktion übergeben werden. Diese Parameter werden in den Klammern hinter dem Funktionsnamen aufgelistet. Innerhalb der Funktion können diese Parameter wie Variablen verwendet werden.
@@ -292,7 +292,8 @@ Das folgende Beispiel zeigt eine Funktion, die zwei Parameter erwartet, diese ad
 
 \begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{javascript}
 function addiere(a, b) {
-	document.getElementById("ergebnis").innerHTML = a + b;
+	document.getElementById("ergebnis")
+		.innerHTML = a + b;
 }
 
 addiere(5, 3);

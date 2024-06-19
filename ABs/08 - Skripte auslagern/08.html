@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Test-Dokument</title>
+    </head>
+    <body>
+        <h1 id="begruessung"></h1>
+        <p>Ich bin ein Paragraph mit Text</p>
+        <script>
+            var name = prompt("Wie ist dein Name?");
+            var alter = prompt("Wie alt bist du?");
+            var ausgabe =
+                "Hallo " + name + ", du bist " + alter + " Jahre alt.";
+            document.getElementById("begruessung").textContent = ausgabe;
+        </script>
+    </body>
+</html>
