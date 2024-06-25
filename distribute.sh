@@ -34,3 +34,7 @@ done
 # HTML Dateien kopieren
 find ./ABs/*/*.html -exec cp {} "./dist/HTML" \;
 echo "HTML Dateien kopiert."
+
+# Eine große PDF Datei erstellen
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile="./dist/ABs/99 - Alle ABs.pdf" ./dist/ABs/*.pdf
+echo "Zusammengefügte PDF erstellt."
