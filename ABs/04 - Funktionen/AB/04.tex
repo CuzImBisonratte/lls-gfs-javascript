@@ -254,7 +254,7 @@ In Javascript kann man Funktionen wie in C++ definieren, die man immer wieder au
 
 Eine Funktion in Javascript sieht so aus:
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <body>
 	<script>
 		function meineFunktion() {
@@ -269,7 +269,7 @@ Funktionen haben immer den Deklarator \texttt{function}, gefolgt von einem Namen
 Eine Funktion hat keinen festen Rückgabetyp, wie in C++ oder Java. Sie kann also beliebige Werte zurückgeben.
 
 Um eine Funktion aufzurufen, schreibt man einfach den Namen der Funktion gefolgt von den Klammern \texttt{()}:
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <body>
 	<script>
 		function meineFunktion() {
@@ -290,10 +290,9 @@ Funktionen können auch Parameter haben, die beim Aufruf der Funktion übergeben
 
 Das folgende Beispiel zeigt eine Funktion, die zwei Parameter erwartet, diese addiert und in ein \texttt{<p>}-Element schreibt:
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{javascript}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{javascript}
 function addiere(a, b) {
-	document.getElementById("ergebnis")
-		.innerHTML = a + b;
+	document.getElementById("ergebnis").innerHTML = a + b;
 }
 
 addiere(5, 3);
@@ -305,7 +304,9 @@ addiere(5, 3);
 
 Knöpfe mit einem \texttt{onclick}-Attribut können nicht nur genutzt werden um einen einzelnen Befehl auszuführen, sondern auch um eine Funktion aufzurufen. Dazu wird der Funktionsaufruf einfach in Anführungszeichen in das \texttt{onclick}-Attribut geschrieben:
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\newpage
+
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <body>
 	<button onclick="meineFunktion()">
 		Klick mich!

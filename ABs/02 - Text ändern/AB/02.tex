@@ -252,7 +252,7 @@ linkcolor=green
 
 Wenn man in JavaScript ein spezifiertes Element ansprechen möchte, nutzt man dafür die Methode
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{javascript}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{javascript}
 document.getElementById("ID_AUS_DEM_HTML_ELEMENT");
 \end{minted}
 
@@ -261,17 +261,17 @@ Ein Element in HTML kann man mit einer ID versehen, indem man diesem ein \textit
 
 Dann könnte ein \texttt{p}-Element mit der ID \texttt{"box"} zum Beispiel so aussehen:
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <p id="box"></p>
 \end{minted}
 
 Um dieses Element nun in JavaScript anzusprechen, könnte folgender Code verwendet werden:
 
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <body>
 	<p id="box"></p>
 	<script>
-		var box = document.getElementById("box");
+		document.getElementById("box");
 	</script>
 </body>
 \end{minted}
@@ -279,12 +279,11 @@ Um dieses Element nun in JavaScript anzusprechen, könnte folgender Code verwend
 \newpage
 
 Um den Inhalt des Elements zu ändern kann man den Parameter \texttt{innerHTML} verwenden:
-\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos]{html}
+\begin{minted}[framesep=2mm,baselinestretch=1.2,bgcolor=codebg,linenos,breaklines]{html}
 <body>
 	<p id="box"></p>
 	<script>
-		var box = document.getElementById("box");
-		box.innerHTML = "Hallo Welt!";
+		document.getElementById("box").innerHTML = "Hallo Welt!";
 	</script>
 </body>
 \end{minted}
