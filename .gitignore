@@ -1,6 +1,5 @@
 *.nlo
 *.gz
-*.pdf
 *.aux
 *.log
 *.out
@@ -10,3 +9,6 @@ _minted*
 
 # Distribution directory
 dist
+
+# Working files
+ABs/*/AB/*.pdf
