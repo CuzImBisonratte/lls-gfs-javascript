@@ -1,4 +1,4 @@
-# LLS-JS GFS
+# LLS GFS JS
 This repo contains worksheets I wrote for a GFS (Gleichwertige Feststellung von Schülerleistungen - engl. equivalent assessment of pupil performance).  
 I had to teach the basics of Javascript to my classmates in 1h30m.  
 
